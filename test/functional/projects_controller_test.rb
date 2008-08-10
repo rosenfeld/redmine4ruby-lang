@@ -44,7 +44,7 @@ class ProjectsControllerTest < Test::Unit::TestCase
     assert_template 'list'
     assert_not_nil assigns(:project_tree)
     # Root project as hash key
-    assert assigns(:project_tree).has_key?(Project.find(1))
+    assert assigns(:project_tree).keys.include?(Project.find(1))
     # Subproject in corresponding value
     assert assigns(:project_tree)[Project.find(1)].include?(Project.find(3))
   end
