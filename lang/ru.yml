@@ -626,4 +626,12 @@ label_and_its_subprojects: %s и все подпроекты
 mail_body_reminder: "%d назначенных на вас задач на следующие %d дней:" 
 mail_subject_reminder: "%d назначенных на вас задач в ближайшие дни" 
 text_user_wrote: '%s написал:'
-label_duplicated_by: duplicated by
+label_duplicated_by: дублируется
+setting_enabled_scm: Задействовать SCM
+text_enumeration_category_reassign_to: 'Назначить им следующее значение:'
+text_enumeration_destroy_question: '%d объект(а,ов) связаны с этим значением.'
+label_incoming_emails: Incoming emails
+label_generate_key: Generate a key
+setting_mail_handler_api_enabled: Enable WS for incoming emails
+setting_mail_handler_api_key: API key
+text_email_delivery_not_configured: "Email delivery is not configured, and notifications are disabled.\nConfigure your SMTP server in config/email.yml and restart the application to enable them."

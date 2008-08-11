@@ -624,3 +624,11 @@ mail_body_reminder: "%d neked kiosztott feladat határidős az elkövetkező %d 
 mail_subject_reminder: "%d feladat határidős az elkövetkező napokban"
 text_user_wrote: '%s írta:'
 label_duplicated_by: duplikálta
+setting_enabled_scm: Forráskódkezelő (SCM) engedélyezése
+text_enumeration_category_reassign_to: 'Újra hozzárendelés ehhez:'
+text_enumeration_destroy_question: '%d objektum van hozzárendelve ehhez az értékhez.'
+label_incoming_emails: Beérkezett levelek
+label_generate_key: Kulcs generálása
+setting_mail_handler_api_enabled: Web Service engedélyezése a beérkezett levelekhez
+setting_mail_handler_api_key: API kulcs
+text_email_delivery_not_configured: "Email delivery is not configured, and notifications are disabled.\nConfigure your SMTP server in config/email.yml and restart the application to enable them."

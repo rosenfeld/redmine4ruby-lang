@@ -621,3 +621,16 @@ label_planning: Planavimas
 text_subprojects_destroy_warning: 'Šis(ie) subprojektas(ai): %s taip pat bus ištrintas(i).'
 label_and_its_subprojects: %s projektas ir jo subprojektai
 
+mail_body_reminder: "%d darbas(ai), kurie yra jums priskirti, baigiasi po %d dienų(os):"
+mail_subject_reminder: "%d darbas(ai) po kelių dienų"
+text_user_wrote: '%s parašė:'
+label_duplicated_by: susiejo
+setting_enabled_scm: Įgalintas SCM
+text_enumeration_category_reassign_to: 'Priskirti juos šiai reikšmei:'
+text_enumeration_destroy_question: '%d objektai priskirti šiai reikšmei.'
+label_incoming_emails: Įeinantys laiškai
+label_generate_key: Generuoti raktą
+setting_mail_handler_api_enabled: Įgalinti WS įeinantiems laiškams
+setting_mail_handler_api_key: API raktas
+
+text_email_delivery_not_configured: "Email delivery is not configured, and notifications are disabled.\nConfigure your SMTP server in config/email.yml and restart the application to enable them."

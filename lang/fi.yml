@@ -617,4 +617,17 @@ setting_default_projects_public: Uudet projektit ovat oletuksena julkisia
 label_overall_activity: Kokonaishistoria
 error_scm_annotate: "Merkintää ei ole tai siihen ei voi lisätä selityksiä."
 label_planning: Suunnittelu
-text_subprojects_destroy_warning: 'Tämän alaprojekti(t): %s tullaan myös poistamaan.'
+text_subprojects_destroy_warning: 'Tämän aliprojekti(t): %s tullaan myös poistamaan.'
+label_and_its_subprojects: %s ja aliprojektit
+mail_body_reminder: "%d sinulle nimettyä tapahtuma(a) erääntyy %d päivä sisään:"
+mail_subject_reminder: "%d tapahtuma(a) erääntyy lähipäivinä"
+text_user_wrote: '%s kirjoitti:'
+label_duplicated_by: kopioinut
+setting_enabled_scm: Versionhallinta käytettävissä
+text_enumeration_category_reassign_to: 'Siirrä täksi arvoksi:'
+text_enumeration_destroy_question: '%d kohdetta on sijoitettu tälle arvolle.'
+label_incoming_emails: Incoming emails
+label_generate_key: Generate a key
+setting_mail_handler_api_enabled: Enable WS for incoming emails
+setting_mail_handler_api_key: API key
+text_email_delivery_not_configured: "Email delivery is not configured, and notifications are disabled.\nConfigure your SMTP server in config/email.yml and restart the application to enable them."
