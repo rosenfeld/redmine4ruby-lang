@@ -44,6 +44,15 @@ class MailerTest < Test::Unit::TestCase
     assert mail.body.include?('<a href="https://mydomain.foo/repositories/revision/ecookbook?rev=2" class="changeset" title="This commit fixes #1, #2 and references #1 &amp; #3">r2</a>')
 =end
   end
+
+  def test_message_id
+    issue = Issue.find(1)
+    ActionMailer::Base.smtp_settings[:host] = 'test.ruby-lang.org'
+    assert Mailer.deliver_issue_add(issue)
+
+    mail = ActionMailer::Base.deliveries.last
+    #assert mail.header['message-id'].include?('test.ruby-lang.org')
+  end
   
   # test mailer methods for each language
   def test_issue_add
@@ -60,6 +69,8 @@ class MailerTest < Test::Unit::TestCase
       assert mail.header['from'].body.include?(issue.author.to_s)
       assert_equal 'text/plain', mail.content_type
       assert_equal "1", mail.header['x-redmine-issue-id'].body
+      assert mail.subject.include?(issue.subject)
+      assert mail.subject.include?(issue.tracker.name)
 
       assert (lang==:ja ? 'iso-2022-jp' : 'utf-8'), mail.charset 
     end
