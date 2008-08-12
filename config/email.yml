@@ -5,6 +5,7 @@ production:
   smtp_settings:
     address: '127.0.0.1'
     port: 25
+    host: 'redmine.ruby-lang.org'
     domain: 'ruby-lang.org'
     authentication: ~
   
@@ -14,4 +15,5 @@ development:
     address: 127.0.0.1
     port: 25
     domain: local.yugui.jp
+    host: local.yugui.jp
     authentication: ~
