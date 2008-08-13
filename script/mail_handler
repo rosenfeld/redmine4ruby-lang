@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'drb/drb'
+require 'socket'
 require 'yaml'
 require 'fileutils'
 
@@ -14,18 +14,25 @@ mail = $stdin.read
 
 temp_dir = File.expand_path(File.dirname(__FILE__) + '/../tmp/mail')
 FileUtils.mkdir_p temp_dir
-begin
-  now = Time.now
-  temp_path = "%s/%d.%05d" % [temp_dir, now.tv_sec, now.tv_usec]
-  File.open(temp_path, File::WRONLY|File::CREAT|File::EXCL){|f| f.write(mail) }
-rescue
-  sleep rand
-  File.open(temp_path, File::WRONLY|File::CREAT|File::EXCL){|f| f.write(mail) } rescue nil
-end
 
 begin
-  receiver = DRbObject.new_with_uri("druby://#{host}:#{port}")
-  receiver.receive(mail)
+  temp_path = nil
+  3.times do |i|
+    now = Time.now
+    temp_path = "%s/%d.%05d" % [temp_dir, now.tv_sec, now.tv_usec]
+    begin
+      File.open(temp_path, File::WRONLY|File::CREAT|File::EXCL){|f| f.write(mail) }
+      break
+    rescue Errno::EEXIST
+      exit(1) if i == 3
+      sleep rand
+      next
+    end
+  end
+
+  TCPSocket.open(host, port){|conn|
+    conn.write(mail)
+  }
 rescue
   $stderr.puts $!.message, $!.backtrace
 else
