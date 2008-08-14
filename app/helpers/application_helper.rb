@@ -85,6 +85,11 @@ module ApplicationHelper
     @time_format ||= (Setting.time_format.blank? ? l(:general_fmt_time) : Setting.time_format)
     include_date ? local.strftime("#{@date_format} #{@time_format}") : local.strftime(@time_format)
   end
+
+  def comma_separated_labelled_list(labels_and_values, line_max = 1.0/0.0)
+    list = labels_and_values.select{|label, value| !value.blank?}.map{|label, value| "#{label}: #{value}"}.join(", ")
+    list.empty? ? "" : "#{list}\n"
+  end
   
   # Truncates and returns the string as a single line
   def truncate_single_line(string, *args)
