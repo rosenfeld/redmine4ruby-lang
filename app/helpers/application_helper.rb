@@ -270,6 +270,10 @@ module ApplicationHelper
       link_project = project
       esc, all, page, title = $1, $2, $3, $5
       if esc.nil?
+        if page =~ /^project:([[:alnum:]\-]+)$/
+          proj = Project.find_by_identifier($1)
+          next link_to((title||proj.name), :controller => 'projects', :action => 'show', :id => proj)
+        end
         if page =~ /^([\w_-]+):(\d+)$/
           ml, number = $1, $2
           ml = MailingList.find_by_name($1)
