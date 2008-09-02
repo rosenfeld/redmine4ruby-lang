@@ -223,14 +223,14 @@ module ApplicationHelper
       end
     end
     
-    text = 
+    text, suppress_wiki_link = 
       case (options[:formatting] || Setting.text_formatting)
       when 'textile'
         Redmine::WikiFormatting.to_html(text) { |macro, args| exec_macro(macro, obj, args) }
       when 'rd'
         Redmine::RDFormatting.to_html(text) { |macro, args| exec_macro(macro, obj, args) }
       when 'null'
-        auto_link(h(text))
+        [auto_link(h(text)), true]
       else
         simple_format(auto_link(h(text)))
       end
@@ -248,7 +248,12 @@ module ApplicationHelper
     end
     
     project = options[:project] || @project || (obj && obj.respond_to?(:project) ? obj.project : nil)
-    
+    text = wiki_link(text, project, format_wiki_link) unless suppress_wiki_link
+    text = redmine_link(text, project, only_path)
+    text
+  end
+
+  def wiki_link(text, project, format_wiki_link)
     # Wiki links
     # 
     # Examples:
@@ -289,7 +294,9 @@ module ApplicationHelper
         all
       end
     end
+  end
 
+  def redmine_link(text, project, only_path)
     # Redmine links
     # 
     # Examples:

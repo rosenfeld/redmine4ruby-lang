@@ -348,7 +348,7 @@ class IssuesController < ApplicationController
     @issue = @project.issues.find_by_id(params[:id]) unless params[:id].blank?
     @attachements = @issue.attachments if @issue
     @text = params[:notes] || (params[:issue] ? params[:issue][:description] : nil)
-    render :partial => 'common/preview'
+    render :layout => false
   end
   
 private
