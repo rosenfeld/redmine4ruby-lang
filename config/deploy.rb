@@ -14,7 +14,7 @@ set :db_bin_path, "/usr/local/bin:/opt/csw/bin:/usr/bin:/bin:/opt/csw/mysql5/bin
 # set :scm, :subversion
 set :scm, :git
 set :repository, "git://github.com/yugui/redmine4ruby-lang.git"
-set :branch, "master"
+set :branch, "0.7-based"
 set :git_shallow_clone, 1
 set :deploy_via, :copy
 set :copy_compression, :zip
