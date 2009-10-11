@@ -6,6 +6,7 @@ config.cache_classes = true
 
 # Use a different logger for distributed setups
 # config.logger        = SyslogLogger.new
+config.logger = Logger.new(config.log_path, 'daily')
 
 
 # Full error reports are disabled and caching is turned on
