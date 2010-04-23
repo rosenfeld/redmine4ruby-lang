@@ -65,7 +65,7 @@ class Mailer < ActionMailer::Base
     from name_addr(issue.author)
     recipients issue.mailing_list.address
     bcc issue.recipients
-    subject "[#{issue.tracker.name} ##{issue.id}] #{issue.subject}"
+    subject "[#{issue.project.name}-#{issue.tracker.name}##{issue.id}][#{issue.status.name}] #{issue.subject}"
     body :issue => issue,
          :issue_url => url_for(:controller => 'issues', :action => 'show', :id => issue)
   end
@@ -87,8 +87,8 @@ class Mailer < ActionMailer::Base
     recipients issue.mailing_list.address
     # recipients and watchers in bcc
     bcc(issue.watcher_recipients & issue.recipients)
-    s = "[#{issue.tracker.name} ##{issue.id}]"
-    s << "(#{issue.status.name})" if journal.new_value_for('status_id')
+    s = "[#{issue.project.name}-#{issue.tracker.name}##{issue.id}]"
+    s << "[#{issue.status.name}]" if journal.new_value_for('status_id')
     s << ' ' << issue.subject
     subject s
     body :issue => issue,
