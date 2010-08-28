@@ -20,10 +20,10 @@ class AttachmentsController < ApplicationController
   before_filter :find_project, :check_project_privacy
 
   def download
-    # images are sent inline
+    # images and texts are sent inline
     send_file @attachment.diskfile, :filename => filename_for_content_disposition(@attachment.filename),
                                     :type => @attachment.content_type, 
-                                    :disposition => (@attachment.image? ? 'inline' : 'attachment')
+                                    :disposition => (@attachment.inplacable? ? 'inline' : 'attachment')
   rescue
     # in case the disk file was deleted
     render_404

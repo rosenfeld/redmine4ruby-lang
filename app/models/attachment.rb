@@ -89,6 +89,11 @@ class Attachment < ActiveRecord::Base
   def image?
     self.filename =~ /\.(jpe?g|gif|png)$/i
   end
+
+  def inplacable?
+    image? || content_type[%r(\Atext/)] ||
+      %w[ application/x-ruby application/ruby ].include?(content_type)
+  end
   
 private
   def sanitize_filename(value)
