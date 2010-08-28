@@ -68,6 +68,13 @@ class Mailer < ActionMailer::Base
     subject "[#{issue.project.name}-#{issue.tracker.name}##{issue.id}][#{issue.status.name}] #{issue.subject}"
     body :issue => issue,
          :issue_url => url_for(:controller => 'issues', :action => 'show', :id => issue)
+
+    for file in issue.attachments
+      File.open(file.diskfile){|io|
+        attachment :content_type => file.content_type,
+          :body => io.read, :filename => file.filename
+      }
+    end
   end
 
   def issue_edit(journal)
@@ -94,6 +101,13 @@ class Mailer < ActionMailer::Base
     body :issue => issue,
          :journal => journal,
          :issue_url => url_for(:controller => 'issues', :action => 'show', :id => issue)
+
+    for file in journal.new_attachments
+      File.open(file.diskfile){|io|
+        attachment :content_type => file.content_type,
+          :body => io.read, :filename => file.filename
+      }
+    end
   end
   
   def document_added(document)

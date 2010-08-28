@@ -63,4 +63,9 @@ class Journal < ActiveRecord::Base
   def attachments
     journalized.respond_to?(:attachments) ? journalized.attachments : nil
   end
+
+  def new_attachments
+    ids = details.find(:all, :conditions => ['property = ?', 'attachment']).map(&:prop_key).map(&:to_i)
+    attachments.select{|a| ids.include?(a.id.to_i) }
+  end
 end
