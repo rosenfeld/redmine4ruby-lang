@@ -1,8 +1,8 @@
 MailHandler.class_eval do
   def dispatch_with_ruby_lang_mailing_list_customization
     if /iso-2022/i =~ email.charset
-      email.body = Iconv.conv("UTF-8", charset, email.body) rescue nil
-      email.subject = Iconv.conv("UTF-8", charset, email.subject) rescue nil
+      email.body = Iconv.conv("UTF-8", email.charset, email.body) rescue nil
+      email.subject = Iconv.conv("UTF-8", email.charset, email.subject) rescue nil
     end
     email.subject = email.subject.sub(/\[#{Regexp.escape driver.mailing_list.identifier}:\d+\]/, '')
     if subject_tag_re =~ email.subject
