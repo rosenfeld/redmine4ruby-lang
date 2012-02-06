@@ -25,6 +25,7 @@ module RedmineRDFormatter
         rh = {'<'=>'&lt;','>'=>'&gt;','&'=>'&amp;','"'=>'&quot;','['=>'&#91;'}
         if Setting.plugin_redmine_rd_formatter[:rd_formatter_require_block]
           text = @text.gsub(/(?:https?|ftp):\/\/[!#-;=?-~]+|[<>&"\[]/){$&.size==1 ? rh[$&] : "<a href=\"#$&\">#$&</a>"}
+          text.gsub!(/\b(r\d+)\b/, '<a href="http://www.rubyist.net/~eban/goto/\1">\1</a>')
           return "<div style=\"padding:1%;border:solid 2px #eee;white-space:pre-wrap;margin-left:5%;background-color:#eef\">#{text}</div>"
         else
           src.unshift("=begin\n").push("=end\n")
