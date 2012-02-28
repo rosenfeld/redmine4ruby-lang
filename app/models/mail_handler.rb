@@ -363,4 +363,8 @@ class MailHandler < ActionMailer::Base
     end
     user
   end
+
+  def logger
+    Rails.logger
+  end
 end
