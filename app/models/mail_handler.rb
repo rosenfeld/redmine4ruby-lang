@@ -137,7 +137,7 @@ class MailHandler < ActionMailer::Base
     
     # add To and Cc as watchers before saving so the watchers can reply to Redmine
     add_watchers(issue)
-    issue.save!
+    issue.save(false)
     add_attachments(issue)
     logger.info "MailHandler: issue ##{issue.id} created by #{user}" if logger && logger.info
     issue
