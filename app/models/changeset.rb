@@ -132,7 +132,15 @@ class Changeset < ActiveRecord::Base
         end
       end
     end
-    
+
+    MailingListMessage.scan_identifier(comments) do |m|
+      if m.issue_id
+        issue = m.issue
+        referenced_issues << issue
+        fix_issue(issue) if fix_keywords.include?(action.to_s.downcase)
+      end
+    end
+
     referenced_issues.uniq!
     self.issues = referenced_issues unless referenced_issues.empty?
   end
